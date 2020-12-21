@@ -6,7 +6,8 @@ void	draw_ocean()
 	static int	frames_done;
 	static int	wave_amount;
 	static int	**waves;
-	static int	i;
+	int			i;
+	int			j;
 
 	if (wave_amount == 0)
 	{
@@ -27,7 +28,7 @@ void	draw_ocean()
 		while (i < wave_amount)
 		{
 			waves[i] = (int *)malloc(sizeof(int) * 2);
-			waves[i][0] = (rand() % (LINES - 1 + 1) + 1);
+			waves[i][0] = (rand() % (LINES) + 1);
 			waves[i][1] = (rand() % (COLS + 30 + frames_done * 2 + 1) + 5);
 			i += 2;
 		}
@@ -47,6 +48,8 @@ void	draw_ocean()
 	i = 0;
 	while (i < wave_amount)
 	{
+		if (frames_done > 3)
+			attron(COLOR_PAIR((rand() % (-14) + 1)));
 		if (i % 2 || i == 0)
 		{
 			if (waves[i][0] > 0)
