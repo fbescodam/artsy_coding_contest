@@ -1,17 +1,18 @@
 #include "headers.h"
 
-void	clear_canvas(char **canvas)
+void	clear_canvas(char **canvas, char **colors)
 {
 	int		i;
 	int		j;
 
 	i = 0;
-	while (i < CANVAS_W)
+	while (i < CANVAS_H)
 	{
 		j = 0;
-		while (j < CANVAS_H)
+		while (j < CANVAS_W)
 		{
 			canvas[i][j] = ' ';
+			colors[i][j] = ' ';
 			j++;
 		}
 		i++;
@@ -24,11 +25,11 @@ char	**init_canvas()
 	char	**canvas;
 	int		i;
 
-	canvas = malloc(sizeof(char *) * CANVAS_W);
+	canvas = malloc(sizeof(char *) * CANVAS_H);
 	i = 0;
-	while (i < CANVAS_W)
+	while (i < CANVAS_H)
 	{
-		canvas[i] = malloc(sizeof(char) * CANVAS_H);
+		canvas[i] = malloc(sizeof(char) * CANVAS_W);
 		i++;
 	}
 	return (canvas);
@@ -48,6 +49,19 @@ void	draw_canvas(char **canvas)
 	}
 }
 
+int		canvas_pos_is_empty(char **canvas, int x, int y)
+{
+	return (canvas[y][x] == ' ');
+}
+
+void	easel(struct timespec ts, char **canvas)
+{
+	clear_canvas(canvas);
+	draw_canvas(canvas);
+	nanosleep(&ts, &ts);
+	easel(ts, canvas);
+}
+
 int		main(void)
 {
 	struct timespec	ts;
@@ -56,8 +70,5 @@ int		main(void)
 	ts.tv_sec = 0;
 	ts.tv_nsec = 1000000000 / FRAMERATE;
 	canvas = init_canvas();
-	clear_canvas(canvas);
-	draw_canvas(canvas);
-	nanosleep(&ts, &ts);
-	main();
+	easel(ts, canvas);
 }
