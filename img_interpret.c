@@ -40,7 +40,7 @@ int file_size(int fd)
 		read(fd, &c, 1);
 		if (c == 'Z')
 			return(size);
-		size++;	
+		size++;
 	}
 	return (size);
 }
@@ -72,16 +72,17 @@ void interpret_img(char *file_name)
 		res = read(fd, &buff, 1);
 		if (colors[i] == 'R')
 			red();
-		else 
+		else
 			reset();
 		printf("%c", buff);
 		i++;
-	} 
+	}
 
 }
 
-
+/*
 int main()
 {
 	interpret_img("shroomboat.txt");
 }
+*/
