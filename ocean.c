@@ -28,7 +28,7 @@ void	draw_ocean()
 		{
 			waves[i] = (int *)malloc(sizeof(int) * 2);
 			waves[i][0] = (rand() % (LINES - 1 + 1) + 1);
-			waves[i][1] = (rand() % (COLS - 5 + 1) + 5);
+			waves[i][1] = (rand() % (COLS + 30 + 1) + 5);
 			i += 2;
 		}
 	}
@@ -39,7 +39,7 @@ void	draw_ocean()
 		{
 			waves[i] = (int *)malloc(sizeof(int) * 2);
 			waves[i][0] = (rand() % (LINES - 1 + 1) + 1);
-			waves[i][1] = (rand() % (COLS - 5 + 1) + 5);
+			waves[i][1] = (rand() % (COLS + 30 + 1) + 5);
 			i += 2;
 		}
 	}
