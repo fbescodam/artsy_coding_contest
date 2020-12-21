@@ -2,7 +2,7 @@ NAME =		beepboopbeep.a
 
 SRCS =		*.c
 
-CFLAGS =	-Wall -Wextra -Werror
+CFLAGS =
 
 all: $(NAME)
 
