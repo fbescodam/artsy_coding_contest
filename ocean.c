@@ -3,6 +3,7 @@
 void	draw_ocean()
 {
 	static int	frame;
+	static int	frames_done;
 	static int	wave_amount;
 	static int	**waves;
 	static int	i;
@@ -20,7 +21,6 @@ void	draw_ocean()
 			i++;
 		}
 	}
-	// printw("LINES: %d, COLS: %d, ", LINES, COLS);
 	if (frame == 0)
 	{
 		i = 0;
@@ -28,7 +28,7 @@ void	draw_ocean()
 		{
 			waves[i] = (int *)malloc(sizeof(int) * 2);
 			waves[i][0] = (rand() % (LINES - 1 + 1) + 1);
-			waves[i][1] = (rand() % (COLS + 30 + 1) + 5);
+			waves[i][1] = (rand() % (COLS + 30 + frames_done * 2 + 1) + 5);
 			i += 2;
 		}
 	}
@@ -39,7 +39,7 @@ void	draw_ocean()
 		{
 			waves[i] = (int *)malloc(sizeof(int) * 2);
 			waves[i][0] = (rand() % (LINES - 1 + 1) + 1);
-			waves[i][1] = (rand() % (COLS + 30 + 1) + 5);
+			waves[i][1] = (rand() % (COLS + 30 + frames_done * 2 + 1) + 5);
 			i += 2;
 		}
 	}
@@ -75,11 +75,14 @@ void	draw_ocean()
 					mvprintw(waves[i][0], waves[i][1], ".");
 			}
 		}
-		waves[i][1]--;
+		waves[i][1] = waves[i][1] - 1 - frames_done / 4;
 		i++;
 	}
-	//printw("wave_amount: %d, frame: %d\n", wave_amount, frame);
+	//printw("frames_done: %d, frame: %d", frames_done, frame);
 	frame++;
 	if (frame > FRAMERATE * 2)
+	{
 		frame = 0;
+		frames_done++;
+	}
 }
