@@ -6,7 +6,7 @@
 #    By: fbes <fbes@student.codam.nl>                 +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/12/21 17:22:55 by fbes          #+#    #+#                  #
-#    Updated: 2020/12/21 17:22:55 by fbes          ########   odam.nl          #
+#    Updated: 2020/12/21 18:27:19 by fbes          ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,8 +29,7 @@ fclean: clean
 
 re: fclean all
 
-test: $(NAME)
+test: fclean $(NAME)
 	./$(NAME)
-	make fclean
 
 .PHONY: all clean fclean re
