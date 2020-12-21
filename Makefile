@@ -7,7 +7,7 @@ CFLAGS =
 all: $(NAME)
 
 $(NAME):
-	$(CC) $(CFLAGS) -o $(NAME) $(SRCS)
+	$(CC) $(CFLAGS) -fsanitize=address -o $(NAME) $(SRCS)
 
 clean:
 
