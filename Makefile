@@ -1,14 +1,4 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         ::::::::             #
-#    Makefile                                           :+:    :+:             #
-#                                                      +:+                     #
-#    By: fbes <fbes@student.codam.nl>                 +#+                      #
-#                                                    +#+                       #
-#    Created: 2020/12/21 17:22:55 by fbes          #+#    #+#                  #
-#    Updated: 2020/12/21 18:24:58 by joellegallu   ########   odam.nl          #
-#                                                                              #
-# **************************************************************************** #
+
 
 NAME =		beepboopbeep.a
 
@@ -29,8 +19,7 @@ fclean: clean
 
 re: fclean all
 
-test: $(NAME)
+test: fclean $(NAME)
 	./$(NAME)
-	make fclean
 
 .PHONY: all clean fclean re
