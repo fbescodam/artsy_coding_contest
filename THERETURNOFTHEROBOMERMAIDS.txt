@@ -4,7 +4,7 @@ of computed waves
 A stray drop bounces
 hits me
 like a drumstick
-$Beep!
+$beep!
 
 Its echo jitters
 and I'm thirsty
@@ -12,7 +12,7 @@ for its sound
 I let my ear fall
 in the water
 in the silence:
-$Boop!
+$boop!
 
 Bubbles pop
 Eyelids drop
@@ -23,9 +23,8 @@ it just beeps
 and boops
 non-stop
 
-$Beep
-$boop
 $beep
+$boop
 $beep
 $boop
 $beep
@@ -45,7 +44,7 @@ The stream takes me
 to the source
 like a tree falls
 in its root
-$Beep
+$beep
 $boop
 
 The stream is flat
@@ -55,7 +54,7 @@ towards the leak
 of sound:
 countless droplets
 flow in my ears
-$Beep
+$beep
 $boop
 $beep
 
@@ -64,4 +63,4 @@ at the end
 a cyber-mermaid
 robotic muse
 "You're almost there!"
-$Boop.
+$boop

@@ -67,4 +67,5 @@ int		main(void)
 	else
 		printw("Story read error");
 	endwin();
+	return (0);
 }
