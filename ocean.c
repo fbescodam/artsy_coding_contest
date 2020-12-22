@@ -53,8 +53,8 @@ int		**draw_ocean()
 		i = 1;
 		while (i < wave_amount)
 		{
-			waves[i][0] = (rand() % (LINES - 1 + 1) + 1);
-			waves[i][1] = (rand() % (COLS + 30 + seconds * 2 + 1) + 5 + seconds * 2);
+			waves[i][0] = (rand() % (LINES) + 1);
+			waves[i][1] = (rand() % (COLS + 30 + seconds * 2) + 5 + seconds * 2);
 			i += 2;
 		}
 	}
