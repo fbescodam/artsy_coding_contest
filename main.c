@@ -27,7 +27,12 @@ void	draw_robbie(int frame, struct timespec ts, int ***waves)
 				i = 0;
 		}
 	}
-	free(robbie);
+	i = 0;
+	while (i < 5)
+	{
+		free(robbie[i]);
+		i++;
+	}
 }
 
 void	easel(struct timespec ts, char *story, char *beep_boop)

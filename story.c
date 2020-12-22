@@ -77,6 +77,8 @@ int		draw_story(char *story, char *beep_boop, unsigned int frame)
 		strncpy(story_line, temp, line_length);
 		story_line[line_length] = '\0';
 		part++;
+		if (story_line[0] == '$')
+			write(1, "\a", 1);
 	}
 	if (story_line[0] == '$')
 		draw_beep_boop(story_line, beep_boop);
