@@ -1,5 +1,25 @@
 #include "headers.h"
 
+
+void	draw_robbie(int frame, struct timespec ts, int ***waves)
+{
+	char *robbie = read_file("DAMERMAID.TXT");
+	int y = 2;
+	int i = 0;
+	int start_frame = frame;
+
+	while (frame--)
+	{
+		*waves = draw_ocean();
+		draw_beep_boop("ggggggg", robbie);
+		refresh();
+		nanosleep(&ts, &ts);
+		clear();
+	}
+	free(robbie);
+}
+
+
 void	easel(struct timespec ts, char *story, char *beep_boop)
 {
 	int						**waves;
@@ -8,6 +28,7 @@ void	easel(struct timespec ts, char *story, char *beep_boop)
 	waves = draw_ocean();
 	if (draw_story(story, beep_boop, frame) < 0)
 	{
+		draw_robbie(frame, ts, &waves);
 		free_waves(waves);
 		return ;
 	}
