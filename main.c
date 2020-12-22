@@ -67,5 +67,7 @@ int		main(void)
 	else
 		printw("Story read error");
 	endwin();
+	free(story);
+	free(beep_boop);
 	return (0);
 }

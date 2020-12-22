@@ -22,7 +22,7 @@ void	draw_beep_boop(char *story_line, char *beep_boop)
 	int		to_beep_or_not_to_boop;
 	int		line_length;
 	char	*temp;
-	char	*temp_line;
+	char	temp_line[COLS + 1];
 	int		y;
 
 	temp = beep_boop;
@@ -37,9 +37,6 @@ void	draw_beep_boop(char *story_line, char *beep_boop)
 	y = 4;
 	while (line_length > 1)
 	{
-		//if (temp_line)
-			//free(temp_line);
-		temp_line = (char *)malloc(sizeof(char) * (line_length + 1));
 		strncpy(temp_line, temp, line_length);
 		temp_line[line_length] = '\0';
 		if (to_beep_or_not_to_boop)
@@ -50,8 +47,6 @@ void	draw_beep_boop(char *story_line, char *beep_boop)
 		line_length = ft_strlen_nl(temp, COLS);
 		y++;
 	}
-	//if (temp_line)
-		//free(temp_line);
 }
 
 int		draw_story(char *story, char *beep_boop, unsigned int frame)
