@@ -10,6 +10,22 @@ size_t	ft_strlen_nl(const char *s, size_t maxlen)
 	return (i);
 }
 
+int		get_amount_of_lines(const char *s)
+{
+	unsigned int	i;
+	int				lines;
+
+	i = 0;
+	lines = 1;
+	while (s[i] != '\0')
+	{
+		if (s[i] == '\n')
+			lines++;
+		i++;
+	}
+	return (lines);
+}
+
 int		get_file_size(int fd)
 {
 	char	c;

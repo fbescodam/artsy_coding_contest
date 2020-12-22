@@ -14,6 +14,7 @@
 
 size_t	ft_strlen_nl(const char *s, size_t maxlen);
 int		get_file_size(int fd);
+int		get_amount_of_lines(const char *s);
 void	free_waves(int **waves);
 int		**draw_ocean(int ended);
 char	*read_file();
