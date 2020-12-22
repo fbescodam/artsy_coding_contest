@@ -3,7 +3,12 @@
 
 void	draw_robbie(int frame, struct timespec ts, int ***waves)
 {
-	char *robbie = read_file("DAMERMAID.TXT");
+	char *robbie[5];
+	robbie[0] = read_file("DAMERMAID_00.TXT");
+	robbie[1] = read_file("DAMERMAID_01.TXT");
+	robbie[2] = read_file("DAMERMAID_02.TXT");
+	robbie[3] = read_file("DAMERMAID_03.TXT");
+	robbie[4] = read_file("DAMERMAID_04.TXT");
 	int y = 2;
 	int i = 0;
 	int start_frame = frame;
@@ -11,10 +16,17 @@ void	draw_robbie(int frame, struct timespec ts, int ***waves)
 	while (frame--)
 	{
 		*waves = draw_ocean();
-		draw_beep_boop("ggggggg", robbie);
+		draw_beep_boop("ggggggg", robbie[i]);
 		refresh();
 		nanosleep(&ts, &ts);
 		clear();
+		if (frame % 2)
+		{
+			if (i < 4)
+				i++;
+			else
+				i = 0;
+		}
 	}
 	free(robbie);
 }
