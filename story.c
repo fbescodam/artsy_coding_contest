@@ -65,7 +65,7 @@ int		draw_story(char *story, char *beep_boop, unsigned int frame)
 	char			*temp;
 	int				centered_x;
 
-	if (frame == 0 || frame % 40 == 0)
+	if (frame == 0 || frame % 50 == 0)
 	{
 		temp = get_story_line(story);
 		if (!temp)
