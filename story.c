@@ -32,15 +32,23 @@ void	draw_beep_boop(char *story_line, char *beep_boop)
 		temp = strchr(beep_boop, 'Z') + 2;
 		to_beep_or_not_to_boop = 1;
 	}
+	else if (story_line[3] != 'e')
+		to_beep_or_not_to_boop = 2;
+
 
 	line_length = ft_strlen_nl(temp, COLS);
-	y = 4;
+	if (to_beep_or_not_to_boop != 2)
+		y = 4;
+	else
+		y = (LINES - get_amount_of_lines(beep_boop)) / 2;
 	while (line_length > 1)
 	{
 		strncpy(temp_line, temp, line_length);
 		temp_line[line_length] = '\0';
-		if (to_beep_or_not_to_boop)
+		if (to_beep_or_not_to_boop == 1)
 			mvprintw(y, COLS - 10 - line_length, temp_line);
+		else if (to_beep_or_not_to_boop == 2)
+			mvprintw(y, (COLS - line_length) / 2, temp_line);
 		else
 			mvprintw(y, 10, temp_line);
 		temp = temp + line_length + 1;
@@ -57,7 +65,7 @@ int		draw_story(char *story, char *beep_boop, unsigned int frame)
 	char			*temp;
 	int				centered_x;
 
-	if (frame == 0 || frame % 60 == 0)
+	if (frame == 0 || frame % 40 == 0)
 	{
 		temp = get_story_line(story);
 		if (!temp)
@@ -70,10 +78,9 @@ int		draw_story(char *story, char *beep_boop, unsigned int frame)
 		story_line[line_length] = '\0';
 		part++;
 	}
-	centered_x = (COLS - line_length) / 2;
 	if (story_line[0] == '$')
 		draw_beep_boop(story_line, beep_boop);
 	else
-		mvprintw(LINES - 4, centered_x, story_line);
+		mvprintw(LINES - 4, (COLS - line_length) / 2, story_line);
 	return (part);
 }
