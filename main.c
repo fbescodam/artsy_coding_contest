@@ -56,7 +56,7 @@ int		main(void)
 	char			*story;
 	char			*beep_boop;
 
-	ts.tv_sec = 1;
+	ts.tv_sec = 0;
 	ts.tv_nsec = 1000000000 / FRAMERATE;
 	setup_curses();
 	story = read_file("THERETURNOFTHEROBOMERMAIDS.txt");
