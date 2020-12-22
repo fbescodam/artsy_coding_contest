@@ -1,21 +1,28 @@
 #include "headers.h"
 
-void	easel(struct timespec ts)
+void	easel(struct timespec ts, char *story, char *beep_boop)
 {
-	draw_ocean();
+	int						**waves;
+	static unsigned int		frame;
+
+	waves = draw_ocean();
+	if (draw_story(story, beep_boop, frame) < 0)
+	{
+		free_waves(waves);
+		return ;
+	}
+	frame++;
 	refresh();
 	nanosleep(&ts, &ts);
 	clear();
-	easel(ts);
+	easel(ts, story, beep_boop);
 }
 
-int		main(void)
+void	setup_curses()
 {
-	struct timespec	ts;
+	WINDOW *scr;
 
-	ts.tv_sec = 0;
-	ts.tv_nsec = 1000000000 / FRAMERATE;
-	initscr();
+	scr = initscr();
 	start_color();
 	use_default_colors();
 	init_pair(1, COLOR_WHITE, -1);
@@ -32,7 +39,32 @@ int		main(void)
 	init_pair(12, 160, -1);
 	init_pair(13, 33, -1);
 	init_pair(14, 14, -1);
-	easel(ts);
-	getch();
+	leaveok(scr, 1);
+}
+
+void	handle_signal(int signal)
+{
+	endwin();
+	refresh();
+	clear();
+	setup_curses();
+}
+
+int		main(void)
+{
+	struct timespec	ts;
+	char			*story;
+	char			*beep_boop;
+
+	ts.tv_sec = 0;
+	ts.tv_nsec = 1000000000 / FRAMERATE;
+	setup_curses();
+	story = read_file("THERETURNOFTHEROBOMERMAIDS.txt");
+	beep_boop = read_file("beep_boop.txt");
+	signal(SIGWINCH, handle_signal);
+	if (story)
+		easel(ts, story, beep_boop);
+	else
+		printw("Story read error");
 	endwin();
 }

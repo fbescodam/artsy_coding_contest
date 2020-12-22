@@ -1,6 +1,19 @@
 #include "headers.h"
 
-void	draw_ocean()
+void	free_waves(int **waves)
+{
+	int		i;
+
+	i = 0;
+	while (waves[i])
+	{
+		free(waves[i]);
+		i++;
+	}
+	free(waves);
+}
+
+int		**draw_ocean()
 {
 	static int	frame;
 	static int	frames_done;
@@ -12,7 +25,9 @@ void	draw_ocean()
 	if (wave_amount == 0)
 	{
 		wave_amount = COLS / 4;
-		waves = (int **)malloc(sizeof(int *) * wave_amount);
+		if (waves)
+			free_waves(waves);
+		waves = (int **)malloc(sizeof(int *) * (wave_amount + 1));
 		i = 0;
 		while (i < wave_amount)
 		{
@@ -21,15 +36,15 @@ void	draw_ocean()
 			waves[i][1] = 0;
 			i++;
 		}
+		waves[i] = NULL;
 	}
 	if (frame == 0)
 	{
 		i = 0;
 		while (i < wave_amount)
 		{
-			waves[i] = (int *)malloc(sizeof(int) * 2);
 			waves[i][0] = (rand() % (LINES) + 1);
-			waves[i][1] = (rand() % (COLS + 30 + frames_done * 2 + 1) + 5);
+			waves[i][1] = (rand() % (COLS + 30 + frames_done * 2 + 1) + 5 + frames_done * 2);
 			i += 2;
 		}
 	}
@@ -38,9 +53,8 @@ void	draw_ocean()
 		i = 1;
 		while (i < wave_amount)
 		{
-			waves[i] = (int *)malloc(sizeof(int) * 2);
 			waves[i][0] = (rand() % (LINES - 1 + 1) + 1);
-			waves[i][1] = (rand() % (COLS + 30 + frames_done * 2 + 1) + 5);
+			waves[i][1] = (rand() % (COLS + 30 + frames_done * 2 + 1) + 5 + frames_done * 2);
 			i += 2;
 		}
 	}
@@ -88,4 +102,5 @@ void	draw_ocean()
 		frame = 0;
 		frames_done++;
 	}
+	return (waves);
 }
