@@ -18,5 +18,6 @@ void	free_waves(int **waves);
 int		**draw_ocean();
 char	*read_file();
 int		draw_story(char *story, char *beep_boop, unsigned int frame);
+void	draw_beep_boop(char *story_line, char *beep_boop);
 
 #endif
