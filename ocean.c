@@ -13,7 +13,7 @@ void	free_waves(int **waves)
 	free(waves);
 }
 
-int		**draw_ocean()
+int		**draw_ocean(int ended)
 {
 	static int	frame;
 	static int	seconds;
@@ -44,7 +44,10 @@ int		**draw_ocean()
 		while (i < wave_amount)
 		{
 			waves[i][0] = (rand() % (LINES) + 1);
-			waves[i][1] = (rand() % (COLS + 30 + seconds * 2 + 1) + 5 + seconds * 2);
+			if (!ended)
+				waves[i][1] = (rand() % (COLS + 30 + seconds * 2 + 1) + 5 + seconds * 2);
+			else
+				waves[i][1] = (rand() % (COLS - 5) + 5);
 			i += 2;
 		}
 	}
@@ -54,7 +57,10 @@ int		**draw_ocean()
 		while (i < wave_amount)
 		{
 			waves[i][0] = (rand() % (LINES) + 1);
-			waves[i][1] = (rand() % (COLS + 30 + seconds * 2) + 5 + seconds * 2);
+			if (!ended)
+				waves[i][1] = (rand() % (COLS + 30 + seconds * 2) + 5 + seconds * 2);
+			else
+				waves[i][1] = (rand() % (COLS - 5) + 5);
 			i += 2;
 		}
 	}
@@ -92,7 +98,8 @@ int		**draw_ocean()
 					mvprintw(waves[i][0], waves[i][1], ".");
 			}
 		}
-		waves[i][1] = waves[i][1] - 1 - seconds / 4;
+		if (!ended)
+			waves[i][1] = waves[i][1] - 1 - seconds / 4;
 		i++;
 	}
 	//printw("seconds: %d, frame: %d", seconds, frame);
