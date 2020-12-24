@@ -5,4 +5,4 @@
 
 Compile by running `make test` in your terminal.
 
-Made by Joelle Galloni & Freek Bes (team beepboopbeep).
+Made by [Joelle Galloni](https://github.com/jollajj98) & [Freek Bes](https://github.com/FreekBes/) (team beepboopbeep).
