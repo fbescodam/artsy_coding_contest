@@ -5,9 +5,10 @@ char	*get_story_line(char *story)
 	static char *last_pos;
 	char		*new_pos;
 
-	if (last_pos == 0)
-		last_pos = story;
-	new_pos = strchr(last_pos, '\n');
+	if (!last_pos)
+		new_pos = story;
+	else
+		new_pos = strchr(last_pos, '\n');
 	if (new_pos)
 	{
 		new_pos++;
@@ -34,7 +35,6 @@ void	draw_beep_boop(char *story_line, char *beep_boop)
 	}
 	else if (story_line[3] != 'e')
 		to_beep_or_not_to_boop = 2;
-
 
 	line_length = ft_strlen_nl(temp, COLS);
 	if (to_beep_or_not_to_boop != 2)
