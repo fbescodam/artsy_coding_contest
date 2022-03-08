@@ -1,5 +1,6 @@
-# codam_artsy_coding_contest
-**Artsy Coding Contest @ Codam, 2020**
+# Artsy Coding Contest @ Codam, 2020
+
+![Artsy Coding Contest poster](https://github.com/FreekBes/codam_artsy_coding_contest/raw/master/poster.jpg)]
 
 [![Click for better quality](https://github.com/FreekBes/codam_artsy_coding_contest/raw/master/preview.gif)](https://www.youtube.com/watch?v=J0kahNeqJyI)
 
